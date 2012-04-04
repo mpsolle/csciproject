@@ -48,6 +48,14 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+  client.mget(['awesome','cool', 'rad', 'gnarly','groovy'], function(error, responses){
+  		res.writeHead(200,{'Content-Type': 'text/html'});
+  		res.end('<p>awesomeCount:</p> ' + responses[0] + '<p>gnarlyCount:</p>' + responses[1] + '<p>radCount:</p>' + responses[2] +
+  			'<p>groovyCount:</p>' + responses[3]);
+
+
+  });
+
 // Routes
 app.get('/', function(req, res) {
     res.render('index.ejs', { terms: terms });
